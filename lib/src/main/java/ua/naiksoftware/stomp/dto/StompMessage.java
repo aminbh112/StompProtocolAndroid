@@ -88,7 +88,7 @@ public class StompMessage {
         try {
         reader.skip("\n\n");
         }catch (NoSuchElementException e){
-        Log.e("ParkXS", "nosuchelementexception handler");
+            //Log.e("ParkXS", "nosuchelementexception handler");
         }
 
         reader.useDelimiter(TERMINATE_MESSAGE_SYMBOL);
