@@ -121,6 +121,8 @@ public class StompClient {
                                     .subscribe(() -> {
                                         Log.d(TAG, "Publish open");
                                         lifecyclePublishSubject.onNext(lifecycleEvent);
+                                    }, throwable -> {
+                                        Log.e(TAG, "Publish Error", throwable);
                                     });
                             break;
 
@@ -204,7 +206,8 @@ public class StompClient {
     public void reconnect() {
         disconnectCompletable()
                 .subscribe(() -> connect(headers),
-                        e -> Log.e(TAG, "Disconnect error", e));
+                        e -> Log.e(TAG, "Disconnect error", e)
+                        );
     }
 
     @SuppressLint("CheckResult")
