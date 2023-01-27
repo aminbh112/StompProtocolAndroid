@@ -244,7 +244,7 @@ public class StompClient {
             streamMap.put(destPath,
                     Completable.defer(() -> subscribePath(destPath, headerList)).andThen(
                     getMessageStream()
-                            .filter(msg -> pathMatcher.matches(destPath, msg))
+                            .filter(msg -> pathMatcher.matches(destPath, msg)||msg.getStompCommand().equalsIgnoreCase(StompCommand.ERROR);)
                             .toFlowable(BackpressureStrategy.BUFFER)
                             .doFinally(() -> unsubscribePath(destPath).subscribe())
                             .share())
